@@ -1,84 +1,64 @@
-<div class="app-sidebar sidebar-shadow">
-    <div class="app-header__logo">
-        <div class="logo-src"></div>
-        <div class="header__pane ml-auto">
-            <div>
-                <button type="button" class="hamburger close-sidebar-btn hamburger--elastic"
-                        data-class="closed-sidebar">
-                                    <span class="hamburger-box">
-                                        <span class="hamburger-inner"></span>
-                                    </span>
-                </button>
-            </div>
-        </div>
-    </div>
-    <div class="app-header__mobile-menu">
-        <div>
-            <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
-                                <span class="hamburger-box">
-                                    <span class="hamburger-inner"></span>
-                                </span>
-            </button>
-        </div>
-    </div>
-    <div class="app-header__menu">
-                        <span>
-                            <button type="button"
-                                    class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
-                                <span class="btn-icon-wrapper">
-                                    <i class="fa fa-ellipsis-v fa-w-6"></i>
-                                </span>
-                            </button>
-                        </span>
-    </div>
-    <div class="scrollbar-sidebar">
-        <div class="app-sidebar__inner">
-            <ul class="vertical-nav-menu">
-                <li class="app-sidebar__heading">Dashboards</li>
-                <li>
-                    <a href="{{route('home')}}" class="@if(request()->routeIs('home')) mm-active @endif">
-                        <i class="metismenu-icon pe-7s-rocket"></i>
-                        Dashboard
-                    </a>
-                </li>
-                {{-- <li class="app-sidebar__heading">{{__('User management')}}</li>--}}
-                @can('role-list')
-                    <li class="@if(request()->routeIs('users*') || request()->routeIs('roles*'))) mm-active @endif">
-                        <a href="#">
-                            <i class="metismenu-icon pe-7s-diamond"></i>
-                            {{__('User management')}}
-                            <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
-                        </a>
-                        <ul>
-                            <li>
-                                <a href="{{route('users.index')}}"
-                                   class="@if(request()->routeIs('users*')) mm-active @endif">
-                                    <i class="metismenu-icon">
-                                    </i>{{__('Users')}}
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{route('roles.index')}}"
-                                   class="@if(request()->routeIs('roles*')) mm-active @endif">
-                                    <i class="metismenu-icon">
-                                    </i>{{__('Roles')}}
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                @endcan
-                <li>
-                    <a href="{{ route('logout') }}"
-                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                        <i class="metismenu-icon pe-7s-left-arrow text-danger"></i>
-                        {{ __('Logout') }}
-                    </a>
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </li>
-            </ul>
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+        <div class="sidebar-brand-icon rotate-n-15">
+            <i class="fas fa-laugh-wink"></i>
         </div>
+        <div class="sidebar-brand-text mx-3">{{config('app.name')}}</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item @if(request()->routeIs('home')) active @endif">
+        <a class="nav-link" href="{{route('home')}}">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Dashboard</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Interface
     </div>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <li class="nav-item ">
+        <a class="nav-link @if(!request()->routeIs('users*') || !request()->routeIs('roles*')) collapsed @endif " href="#" data-toggle="collapse" data-target="#collapseTwo"
+           aria-expanded="true" aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-cog"></i>
+            <span>{{__('User management')}}</span>
+        </a>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+
+                <div
+                    class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">{{__('User management')}}:</h6>
+                    <a class="collapse-item @if(request()->routeIs('users*')) active @endif"
+                       href="{{route('users.index')}}">{{__('Users')}}</a>
+                    @can('role-list')
+                    <a class="collapse-item @if(request()->routeIs('roles*')) active @endif"
+                       href="{{route('roles.index')}}">{{__('Roles')}}</a>
+                    @endcan
+                </div>
+
+        </div>
+    </li>
+    <li class="nav-item">
+        <a href="{{ route('logout') }}" class="nav-link"
+           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+            <i class="fas fa-fw fa-arrow-alt-circle-left"></i>
+            <span>{{ __('Logout') }}</span>
+        </a>
+
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+        </form>
+    </li>
+</ul>
+

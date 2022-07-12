@@ -1,17 +1,18 @@
-@extends('layouts.architect')
+@extends('layouts.sb2')
 @section('title')
     Users Management
 @endsection
 @section('content')
-    <div class="card">
+    <div class="card shadow col-12">
         <div class="row">
-            <div class="col-lg-12 margin-tb  card-header d-flex justify-content-between">
+            <div
+                class="col-lg-12 margin-tb  card-header d-flex justify-content-between m-0 font-weight-bold text-primary">
                 <div>
                     Users Management
                 </div>
                 <div>
                     @can('role-create')
-                        <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
+                    <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
                     @endcan
                 </div>
             </div>
@@ -38,15 +39,21 @@
                             @endforelse
                         </td>
                         <td class="d-flex justify-content-around">
-                            <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
+                            <a href="{{ route('users.show',$user->id) }}" class="btn btn-info">
+                                <i class="fas fa-info-circle icon text-white-50"></i>
+                            </a>
                             @can('role-edit')
-                                <a class="btn btn-primary " href="{{ route('users.edit',$user->id) }}">Edit</a>
+                                <a class="btn btn-primary mx-1"
+                                   href="{{ route('users.edit',$user->id) }}">
+                                    <i class="fas fa-pen icon text-white-50"></i></a>
                             @endcan
                             @can('role-delete')
                                 <form action="{{ route('users.destroy', $user->id) }}" method="POST">
                                     @method('DELETE')
                                     @csrf
-                                    <button class="btn badge-danger text-light" type="submit">Delete User</button>
+                                    <button class="btn badge-danger " type="submit">
+                                        <i class="fas fa-trash-alt icon text-white-50"></i>
+                                    </button>
                                 </form>
                             @endcan
                         </td>

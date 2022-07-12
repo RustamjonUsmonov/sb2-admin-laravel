@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/test', function () {
-    return view('layouts.architect');
+    return view('layouts.sb2');
 });
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);

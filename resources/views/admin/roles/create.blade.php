@@ -1,9 +1,9 @@
-@extends('layouts.architect')
+@extends('layouts.sb2')
 @section('title')
     {{__('Create New Role')}}
 @endsection
 @section('content')
-    <div class="card">
+    <div class="card  col-6 mx-auto">
         <div class="row">
             <div class="col-lg-12 margin-tb  card-header d-flex justify-content-between">
                 <div>

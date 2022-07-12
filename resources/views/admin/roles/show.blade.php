@@ -1,9 +1,6 @@
-@extends('layouts.architect')
-@section('title')
-    Show Role
-@endsection
+@extends('layouts.sb2')
 @section('content')
-    <div class="card">
+    <div class="card  col-6 mx-auto">
         <div class="row">
             <div class="col-lg-12 margin-tb  card-header d-flex justify-content-between">
                 <div>
