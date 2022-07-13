@@ -22,6 +22,8 @@ Route::get('/test', function () {
     return view('layouts.sb2');
 });
 Route::group(['middleware' => ['auth']], function() {
+    Route::get('/profile',[\App\Http\Controllers\HomeController::class,'profileIndex'])->name('profile.index');
+    Route::put('/profile/update/{user}',[\App\Http\Controllers\HomeController::class,'profileUpdate'])->name('profile.update');
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
     //Route::resource('products', ProductController::class);
