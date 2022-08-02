@@ -3,5 +3,5 @@
 **Used Technologies**
 
 - Laravel Bootstrap UI - basic Auth
-- [architectui-html-dashboard-free](https://dashboardpack.com/theme-details/architectui-html-dashboard-free/) - dashboard
+- [sb-admin-2](https://startbootstrap.com/previews/sb-admin-2) - dashboard
 - Spatie Permission Package - user-role management
