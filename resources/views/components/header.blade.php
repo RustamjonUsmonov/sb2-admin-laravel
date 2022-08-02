@@ -62,7 +62,7 @@
                 <h6 class="dropdown-header">
                     {{Auth::user()->getRoleNames()->first()}}
                 </h6>
-                <a class="dropdown-item" href="#">
+                <a class="dropdown-item" href="{{route('passwords.index')}}">
                     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
                     Settings
                 </a>

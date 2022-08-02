@@ -4,28 +4,28 @@
         <div class="row">
             <div class="col-lg-4 col-12 mb-md-2 mb-4">
                 <h6 class="m-0 font-weight-bold text-primary">{{ __('Profile information') }}</h6>
-                Update your account's profile information and email address.
+                Update your account's password.
             </div>
             <div class="col">
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
                         <h6 class="m-0 font-weight-bold text-primary">{{Auth::user()->getRoleNames()->first()}}</h6>
                     </div>
-                    <div class="card-body">
-                        <input type="file"></div>
                     <div class="card-body col-12">
                         <div class="form-row">
-                            <form method="POST" action="{{route('profile.update',$user->id)}}" class="col">
+                            <form method="POST"
+                                  action="{{route('passwords.update',\Illuminate\Support\Facades\Auth::id())}}"
+                                  class="col">
                                 @csrf
                                 @method('PUT')
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <label for="name">Name:</label>
-                                            <input id="name" type="text"
-                                                   class="form-control @error('name') is-invalid @enderror"
-                                                   placeholder="Name" name="name" value="{{$user->name}}">
-                                            @error('name')
+                                            <label for="new">New Password:</label>
+                                            <input id="new" type="password"
+                                                   class="form-control @error('password') is-invalid @enderror"
+                                                   name="password" autofocus>
+                                            @error('password')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -36,11 +36,11 @@
                                 <div class="row">
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <label for="email">E-mail:</label>
-                                            <input id="email" type="email"
-                                                   class="form-control @error('email') is-invalid @enderror"
-                                                   name="email" value="{{$user->email}}">
-                                            @error('email')
+                                            <label for="confirm">Confirm Password:</label>
+                                            <input id="confirm" type="password"
+                                                   class="form-control @error('password_confirmation') is-invalid @enderror"
+                                                   name="password_confirmation" required>
+                                            @error('password_confirmation')
                                             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
